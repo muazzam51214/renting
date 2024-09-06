@@ -3,38 +3,17 @@
   <!-- Include Banner -->
   <%- include("../includes/banner.ejs") %>
 
-  <h1>All listings</h1>
-  <a href="/listing/new/">
-    <button>Create Listing</button>
-  </a>
-  <ul>
-    <% for(let listing of listings){ %>
-    <li><a href="/listing/<%= listing._id %>"><%= listing.title %></a></li>
-    <% } %>
-  </ul>
-
   <!-- TOP DESTINATIONS SECTION -->
   <section
     class="float-left w-100 top-destinations-con position-relative padding-top padding-bottom main-box"
   >
-    <img
-      alt="vector"
-      class="vector4 wow bounceInUp img-fluid position-absolute"
-      data-wow-duration="2s"
-      src="/assets/images/vector4.png"
-    />
-    <img
-      alt="vector"
-      class="vector5 wow bounceInUp img-fluid position-absolute"
-      data-wow-duration="2s"
-      src="/assets/images/vector5.png"
-    />
+    
     <div
       class="container destination-con2 wow bounceInUp"
       data-wow-duration="2s"
     >
       <div class="heading-title text-center">
-        <h4 class="text-uppercase">All Listing</h4>
+        <h4 class="text-uppercase">All Listings</h4>
         <h2 class="">All Listings in One Place!</h2>
         <!-- heading title -->
       </div>
@@ -43,13 +22,11 @@
         <% for(let listing of listings){ %>
         <div class="col-lg-4 col-md-6">
           <div class="destination-box position-relative">
-            <div class="orange-tag position-absolute">Rs.<%= listing.price.toLocaleString("en-PK") %></div>
+            <div class="orange-tag position-absolute">
+              Rs.<%= listing.price.toLocaleString("en-PK") %>
+            </div>
             <figure>
-              <img
-                src="<%= listing.image %>"
-                alt="image"
-                class="img-fluid"
-              />
+              <img src="<%= listing.image %>" alt="image" class="img-fluid" />
             </figure>
             <div class="bottom-con">
               <span class="d-block text-uppercase">
