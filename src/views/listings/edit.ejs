@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Listings | Renting Platform</title>
+  </head>
+  <body>
+    <h1>Edit Details :</h1>
+    <form method="POST" action="/listing/<%= listing._id %>?_method=PUT">
+      <div>
+        <input type="text" name="title" value="<%= listing.title %>">
+      </div>
+      <br>
+      <div>
+        <input type="number" name="price" value="<%= listing.price %>">
+      </div>
+      <br>
+      <div>
+        <input type="text" name="location" value="<%= listing.location %>">
+      </div>
+      <br>
+      <div>
+        <input type="text" name="country" value="<%= listing.country%>">
+      </div>
+      <br>
+      <div>
+        <input type="text" name="image" value="<%= listing.image %>">
+      </div>
+      <br>
+      <div>
+        <textarea name="description"> <%= listing.description %></textarea>
+      </div>
+      <br>
+      <div>
+        <button type="submit">Update Listing</button>
+      </div>
+    </form>
+  </body>
+</html>
