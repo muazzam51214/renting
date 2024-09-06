@@ -1,19 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>All Listings | Renting Platform</title>
-  </head>
-  <body>
-    <h1>All listings</h1>
-    <a href="/listing/new/">
-      <button>Create Listing</button>
-    </a>
-    <ul>
-      <% for(let listing of listings){ %>
-      <li><a href="/listing/<%= listing._id %>"><%= listing.title %></a></li>
-      <% } %>
-    </ul>
-  </body>
-</html>
+<% layout("/layouts/boilerplate") %>
+<body>
+  <!-- Include Banner -->
+  <%- include("../includes/banner.ejs") %>
+
+  <h1>All listings</h1>
+  <a href="/listing/new/">
+    <button>Create Listing</button>
+  </a>
+  <ul>
+    <% for(let listing of listings){ %>
+    <li><a href="/listing/<%= listing._id %>"><%= listing.title %></a></li>
+    <% } %>
+  </ul>
+
+  <!-- TOP DESTINATIONS SECTION -->
+  <section
+    class="float-left w-100 top-destinations-con position-relative padding-top padding-bottom main-box"
+  >
+    <img
+      alt="vector"
+      class="vector4 wow bounceInUp img-fluid position-absolute"
+      data-wow-duration="2s"
+      src="/assets/images/vector4.png"
+    />
+    <img
+      alt="vector"
+      class="vector5 wow bounceInUp img-fluid position-absolute"
+      data-wow-duration="2s"
+      src="/assets/images/vector5.png"
+    />
+    <div
+      class="container destination-con2 wow bounceInUp"
+      data-wow-duration="2s"
+    >
+      <div class="heading-title text-center">
+        <h4 class="text-uppercase">All Listing</h4>
+        <h2 class="">All Listings in One Place!</h2>
+        <!-- heading title -->
+      </div>
+
+      <div class="row">
+        <% for(let listing of listings){ %>
+        <div class="col-lg-4 col-md-6">
+          <div class="destination-box position-relative">
+            <div class="orange-tag position-absolute">Rs.<%= listing.price.toLocaleString("en-PK") %></div>
+            <figure>
+              <img
+                src="<%= listing.image %>"
+                alt="image"
+                class="img-fluid"
+              />
+            </figure>
+            <div class="bottom-con">
+              <span class="d-block text-uppercase">
+                <%= listing.location %>
+              </span>
+              <a href="/listing/<%= listing._id %>">
+                <h4><%= listing.title %></h4>
+              </a>
+              <!-- Reviews Count -->
+              <!-- <span class="d-inline-block star-con"
+                  ><i class="fa-solid fa-star"></i> 4.9
+                  <span class="d-inline-block review-span"
+                    >(1.7k Review)</span
+                  ></span
+                > -->
+              <!-- bottom con -->
+            </div>
+            <!-- destination-box -->
+          </div>
+        </div>
+        <% } %>
+
+        <!-- row -->
+      </div>
+
+      <!-- container -->
+    </div>
+    <!-- top destinations con -->
+  </section>
+</body>
