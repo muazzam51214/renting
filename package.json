@@ -1,0 +1,25 @@
+{
+  "name": "renting",
+  "version": "1.0.0",
+  "description": "A property renting and listing platform inspired from Airbnb",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js"
+  },
+  "keywords": [
+    "renting",
+    "airbnb"
+  ],
+  "author": "muazzam",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "mongoose": "^8.6.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.4"
+  }
+}
