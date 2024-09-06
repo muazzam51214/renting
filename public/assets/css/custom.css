@@ -1129,8 +1129,8 @@ span {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     display: block;
+    height:240px;
     width: 100%;
-    height: auto;
     z-index: 0;
     -webkit-transition: 2s linear;
     transition: 2s linear;

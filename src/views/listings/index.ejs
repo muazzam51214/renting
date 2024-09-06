@@ -7,7 +7,6 @@
   <section
     class="float-left w-100 top-destinations-con position-relative padding-top padding-bottom main-box"
   >
-    
     <div
       class="container destination-con2 wow bounceInUp"
       data-wow-duration="2s"
@@ -21,34 +20,37 @@
       <div class="row">
         <% for(let listing of listings){ %>
         <div class="col-lg-4 col-md-6">
-          <div class="destination-box position-relative">
-            <div class="orange-tag position-absolute">
-              Rs.<%= listing.price.toLocaleString("en-PK") %>
-            </div>
-            <figure>
-              <img src="<%= listing.image %>" alt="image" class="img-fluid" />
-            </figure>
-            <div class="bottom-con">
-              <span class="d-block text-uppercase">
-                <%= listing.location %>
-              </span>
+            <div class="destination-box position-relative">
+              <div class="orange-tag position-absolute">
+                Rs.<%= listing.price.toLocaleString("en-PK") %> / Mon
+              </div>
               <a href="/listing/<%= listing._id %>">
-                <h4><%= listing.title %></h4>
+                <figure>
+                  <img src="<%= listing.image %>" alt="image" class="img-fluid" />
+                </figure>
               </a>
-              <!-- Reviews Count -->
-              <!-- <span class="d-inline-block star-con"
+              <div class="bottom-con">
+                <span class="d-block text-uppercase">
+                  <%= listing.location %>
+                </span>
+                <a href="/listing/<%= listing._id %>">
+                  <h4><%= listing.title %></h4>
+                </a>
+                <!-- Reviews Count -->
+                <!-- <span class="d-inline-block star-con"
                   ><i class="fa-solid fa-star"></i> 4.9
                   <span class="d-inline-block review-span"
                     >(1.7k Review)</span
                   ></span
                 > -->
-              <!-- bottom con -->
+                <!-- bottom con -->
+              </div>
+              <!-- destination-box -->
             </div>
-            <!-- destination-box -->
-          </div>
+
         </div>
         <% } %>
-
+ 
         <!-- row -->
       </div>
 

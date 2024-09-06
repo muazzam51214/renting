@@ -1,33 +1,122 @@
 <% layout("/layouts/boilerplate") %>
-  <body>
-    <h1>Add Details :</h1>
-    <form method="POST" action="/listing/">
-      <div>
-        <input type="text" name="title" placeholder="Enter title">
+<body>
+  <!-- Include Banner -->
+  <%- include("../includes/banner.ejs") %>
+
+  <!-- CONTACT FORM SECTION  -->
+  <section
+    class="float-left w-100 talk-width-our-team-con position-relative main-box padding-top padding-bottom"
+  >
+    <div class="container wow bounceInUp" data-wow-duration="2s">
+      <div class="heading-title text-center">
+        <h4 class="text-uppercase">Add New Listing</h4>
+        <h2 class="">Add Your Property</h2>
+        <!-- heading title -->
       </div>
-      <br>
-      <div>
-        <input type="number" name="price" placeholder="Enter price">
+      <div class="row">
+        <div class="col-12">
+          <div class="register-box">
+            <form method="POST" action="/listing/">
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label>Title :</label>
+                        <input
+                          type="text"
+                          class="form_style"
+                          placeholder="Enter Title:"
+                          name="title"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label>Price :</label>
+                        <input
+                          type="number"
+                          class="form_style"
+                          placeholder="Enter Rent/Month"
+                          name="price"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div class="col-12">
+                      <div class="form-group fon-con">
+                        <label>Location :</label>
+                        <input
+                          type="text"
+                          class="mb-md-0 form_style"
+                          placeholder="Enter Location"
+                          name="location"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="form-group fon-con">
+                        <label>Country :</label>
+                        <input
+                          type="text"
+                          class="mb-md-0 form_style"
+                          placeholder="Enter Country"
+                          name="country"
+                        />
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                  <div class="row">
+
+                    <div class="col-12">
+                      <div class="form-group fon-con">
+                        <label>Image :</label>
+                        <input
+                          type="text"
+                          class="mb-md-0 form_style"
+                          placeholder="Enter Image URL / Link"
+                          name="image"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="form-group mb-0">
+                        <label>Description :</label>
+                        <textarea
+                          class="form_style"
+                          placeholder="Add Description:"
+                          rows="5"
+                          name="description"
+                        ></textarea>
+                      </div>
+                    </div>
+
+
+                    <div class="col-12"></div>
+                      <div class="manage-button ml-3">
+                        <button
+                          type="submit"
+                          class="register_now text-white text-decoration-none w-100"
+                        >
+                          Add Listing
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
-      <br>
-      <div>
-        <input type="text" name="location" placeholder="Enter location">
-      </div>
-      <br>
-      <div>
-        <input type="text" name="country" placeholder="Enter country">
-      </div>
-      <br>
-      <div>
-        <input type="text" name="image" placeholder="Enter image link/url">
-      </div>
-      <br>
-      <div>
-        <textarea name="description" placeholder="Enter description"></textarea>
-      </div>
-      <br>
-      <div>
-        <button type="submit">Add Listing</button>
-      </div>
-    </form>
-  </body>
+      <!-- container -->
+    </div>
+    <!-- talk with our team con -->
+  </section>
+</body>

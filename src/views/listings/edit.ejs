@@ -1,33 +1,121 @@
 <% layout("/layouts/boilerplate") %>
-  <body>
-    <h1>Edit Details :</h1>
-    <form method="POST" action="/listing/<%= listing._id %>?_method=PUT">
-      <div>
-        <input type="text" name="title" value="<%= listing.title %>">
+<body>
+  <!-- Include Banner -->
+  <%- include("../includes/banner.ejs") %>
+
+  <!-- CONTACT FORM SECTION  -->
+  <section
+    class="float-left w-100 talk-width-our-team-con position-relative main-box padding-top padding-bottom"
+  >
+    <div class="container wow bounceInUp" data-wow-duration="2s">
+      <div class="heading-title text-center">
+        <h4 class="text-uppercase">Update Listing</h4>
+        <h2 class="">Update Your Property</h2>
+        <!-- heading title -->
       </div>
-      <br>
-      <div>
-        <input type="number" name="price" value="<%= listing.price %>">
+      <div class="row">
+        <div class="col-12">
+          <div class="register-box">
+            <form method="POST" action="/listing/<%= listing._id %>?_method=PUT">
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label>Title :</label>
+                        <input
+                          type="text"
+                          class="form_style"
+                          value="<%= listing.title %>"
+                          name="title"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label>Price :</label>
+                        <input
+                          type="number"
+                          class="form_style"
+                          value="<%= listing.price %>"
+                          name="price"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div class="col-12">
+                      <div class="form-group fon-con">
+                        <label>Location :</label>
+                        <input
+                          type="text"
+                          class="mb-md-0 form_style"
+                          value="<%= listing.location %>"
+                          name="location"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="form-group fon-con">
+                        <label>Country :</label>
+                        <input
+                          type="text"
+                          class="mb-md-0 form_style"
+                          value="<%= listing.country %>"
+                          name="country"
+                        />
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                  <div class="row">
+
+                    <div class="col-12">
+                      <div class="form-group fon-con">
+                        <label>Image :</label>
+                        <input
+                          type="text"
+                          class="mb-md-0 form_style"
+                          value="<%= listing.image %>"
+                          name="image"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="form-group mb-0">
+                        <label>Description :</label>
+                        <textarea
+                          class="form_style"
+                          name="description"
+                        ><%= listing.description.trim() %></textarea>
+                      </div>
+                    </div>
+
+
+                    <div class="col-12"></div>
+                      <div class="manage-button ml-3">
+                        <button
+                          type="submit"
+                          class="register_now text-white text-decoration-none w-100"
+                        >
+                          Update Listing
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
-      <br>
-      <div>
-        <input type="text" name="location" value="<%= listing.location %>">
-      </div>
-      <br>
-      <div>
-        <input type="text" name="country" value="<%= listing.country%>">
-      </div>
-      <br>
-      <div>
-        <input type="text" name="image" value="<%= listing.image %>">
-      </div>
-      <br>
-      <div>
-        <textarea name="description"> <%= listing.description %></textarea>
-      </div>
-      <br>
-      <div>
-        <button type="submit">Update Listing</button>
-      </div>
-    </form>
-  </body>
+      <!-- container -->
+    </div>
+    <!-- talk with our team con -->
+  </section>
+</body>
+
