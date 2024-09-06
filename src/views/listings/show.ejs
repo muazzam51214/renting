@@ -1,20 +1,305 @@
 <% layout("/layouts/boilerplate") %>
+<body>
+  <!-- Include Banner -->
+  <%- include("../includes/banner.ejs") %>
 
-  <body>
-    <h1>Listing Details :</h1>
-    <img src="<%= listing.image %>" alt="listing image">
-    <ul>
-      <li>Title : <%= listing.title %></li>
-      <li>Description : <%= listing.description %></li>
-      <li>Price : Rs.<%= listing.price.toLocaleString("en-PK") %></li>
-      <li>Location : <%= listing.location %></li>
-      <li>Country : <%= listing.country %></li>
-    </ul>
+  <!-- Single Blog -->
+  <section class="singleblog-section blogpage-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-12 col-sm-12 col-12">
+          <div class="main-box">
+            <figure
+              class="image1 mb-3"
+              data-aos="fade-up"
+              data-aos-duration="700"
+            >
+              <img
+                src="<%= listing.image %>"
+                alt="image"
+                class="img-fluid"
+                loading="lazy"
+                style="width: 100%"
+              />
+            </figure>
+            <div class="content1" data-aos="fade-up" data-aos-duration="700">
+              <h4>
+                <%= listing.title %> @ Rs.<%=
+                listing.price.toLocaleString("en-PK") %> / Month
+              </h4>
 
-    <a href="/listing/<%= listing._id %>/edit">Edit this listing</a>
-    <br><br>
+              <div class="span-fa-outer-con">
+                <i class="fa-solid fa-dollar"></i>
+                <span class="text-size-14 text-mr">
+                  Rs.<%= listing.price.toLocaleString("en-PK") %> / Month</span
+                >
 
-    <form method="POST" action="/listing/<%= listing._id %>?_method=DELETE">
-      <button>Delete this listing</button>
-    </form>
-  </body>
+                <i class="mb-0 calendar fa-solid fa-calendar-days"></i>
+                <span class="mb-0 text-size-14">
+                  <% const date = new Date(listing.createdAt); const options = {
+                  month: 'short', day: 'numeric', year: 'numeric' }; const
+                  formattedDate = date.toLocaleDateString('en-US', options); %>
+                  <%=formattedDate %>
+                </span>
+
+                <i class="fa-solid fa-map-marker-alt ml-1"></i>
+                <span class="text-size-14 text-mr">
+                  <%= listing.location %>
+                </span>
+
+                <i class="fa-solid fa-globe ml-1"></i>
+                <span class="text-size-14 text-mr">
+                  <%= listing.country.charAt(0).toUpperCase() +
+                  listing.country.slice(1) %>
+                </span>
+              </div>
+              <p class="text-size-14"><%= listing.description %></p>
+
+              <div class="button mt-4 d-flex">
+                <a href="/listing/<%= listing._id %>/edit" class="single-listing-btn">
+                  <i class="fa fa-pencil" style="color: #fff"></i> Edit Listing
+                </a>
+               
+
+                <form
+                method="POST"
+                action="/listing/<%= listing._id %>?_method=DELETE"
+              >
+                <button style="background-color: red; border: none; cursor: pointer;" class="single-listing-btn ml-3"><i class="fa fa-trash" style="color: #fff"></i> Delete Listing</button>
+              </form>
+              </div>
+            </div>
+
+            <!-- <div class="content6" data-aos="fade-up" data-aos-duration="700">
+              <h4>2 Comments</h4>
+              <div class="comment">
+                <div class="image" data-aos="flip-left">
+                  <img
+                    alt="image"
+                    src="/assets/images/singleblog-review2.png"
+                    class="avatar"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="content">
+                  <h5>Roseanne Williams</h5>
+                  <span class="text-size-14">Dec 29, 2022</span>
+                  <a class="reply text-decoration-none" href="#">Reply</a>
+                  <div class="text_holder">
+                    <p class="text-size-14">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud
+                      exercitation.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="comment">
+                <div class="image" data-aos="flip-left">
+                  <img
+                    alt="image"
+                    src="/assets/images/singleblog-review3.png"
+                    class="avatar"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="content">
+                  <h5>Samantha Nicolan</h5>
+                  <span class="text-size-14">Dec 29, 2022</span>
+                  <a class="reply text-decoration-none" href="#">Reply</a>
+                  <div class="text_holder">
+                    <p class="text-size-14">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud
+                      exercitation.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+
+            <!-- <div class="content7" data-aos="fade-up" data-aos-duration="700">
+              <h4>Leave a Comment</h4>
+              <form id="blogpage" method="POST">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group mb-0">
+                      <textarea
+                        class="form_style"
+                        placeholder="Enter your comment here..."
+                        rows="3"
+                        name="msg"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group mb-0">
+                      <input
+                        type="text"
+                        class="form_style"
+                        placeholder="Your name"
+                        name="name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group mb-0">
+                      <input
+                        type="email"
+                        class="form_style"
+                        placeholder="Your e-mail"
+                        name="emailid"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group mb-0">
+                      <input
+                        type="text"
+                        class="form_style text-mb"
+                        placeholder="Your topic"
+                        name="topic"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="button text-center">
+                  <button type="submit" class="post_comment">
+                    Post Comment
+                  </button>
+                </div>
+              </form>
+            </div> -->
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12 col-12 column">
+          <div class="box1 box1" data-aos="fade-up" data-aos-duration="700">
+            <h5>Listing Details</h5>
+
+            <ul class="tag mb-0 list-unstyled">
+              <li>
+                <i class="fa fa-heading" style="color: #1ec28b"></i> <%=
+                listing.title %>
+              </li>
+
+              <li class="mt-3">
+                <i class="fa fa-calendar-days" style="color: #1ec28b"></i> <%=
+                listing.createdAt.toLocaleString("en-PK", options) %>
+              </li>
+
+              <li class="mt-3">
+                <i class="fa fa-map-marker-alt" style="color: #1ec28b"></i> <%=
+                listing.location %>
+              </li>
+
+              <li class="mt-3">
+                <i class="fa fa-dollar" style="color: #1ec28b"></i> Rs.<%=
+                listing.price.toLocaleString("en-PK") %> / Month
+              </li>
+
+              <li class="mt-3">
+                <i class="fa fa-globe" style="color: #1ec28b"></i> <%=
+                listing.country.charAt(0).toUpperCase() +
+                listing.country.slice(1) %>
+              </li>
+            </ul>
+
+            <div class="button mt-4">
+              <a href="#" class="single-listing-btn"> Book Now </a>
+            </div>
+          </div>
+          <div class="box1 box3" data-aos="fade-up" data-aos-duration="700">
+            <h5>Follow Us</h5>
+            <div class="social-icons">
+              <ul class="mb-0 list-unstyled">
+                <li>
+                  <a href="#" class="text-decoration-none"
+                    ><i class="fa-brands fa-linkedin-in social-networks"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="#" class="text-decoration-none"
+                    ><i class="fa-brands fa-instagram social-networks"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="#" class="text-decoration-none"
+                    ><i class="fa-brands fa-facebook-f social-networks"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="#" class="text-decoration-none"
+                    ><i class="fa-brands fa-x-twitter social-networks"></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Feeds / Related Products -->
+          <!-- <div class="box1 box5" data-aos="fade-up" data-aos-duration="700">
+            <h5>Feeds</h5>
+            <div class="feed">
+              <figure class="feed-image mb-0" data-aos="fade-up">
+                <img
+                  src="/assets/images/singleblog-feed1.jpg"
+                  alt="image"
+                  class="img-fluid"
+                  loading="lazy"
+                />
+              </figure>
+              <a href="six-colum-full-wide.html" class="mb-0"
+                >Why You Need Virtual Assistant for Your Company</a
+              >
+            </div>
+            <div class="feed">
+              <figure class="feed-image mb-0" data-aos="fade-up">
+                <img
+                  src="/assets/images/singleblog-feed2.jpg"
+                  alt="image"
+                  class="img-fluid"
+                  loading="lazy"
+                />
+              </figure>
+              <a href="six-colum-full-wide.html" class="mb-0"
+                >Why You Need Virtual Assistant for Your Company</a
+              >
+            </div>
+            <div class="feed">
+              <figure class="feed-image mb-0" data-aos="fade-up">
+                <img
+                  src="/assets/images/singleblog-feed3.jpg"
+                  alt="image"
+                  class="img-fluid"
+                  loading="lazy"
+                />
+              </figure>
+              <a href="six-colum-full-wide.html" class="mb-0"
+                >Why You Need Virtual Assistant for Your Company</a
+              >
+            </div>
+            <div class="feed feed4">
+              <figure class="feed-image mb-0" data-aos="fade-up">
+                <img
+                  src="/assets/images/singleblog-feed4.jpg"
+                  alt="image"
+                  class="img-fluid"
+                  loading="lazy"
+                />
+              </figure>
+              <a href="six-colum-full-wide.html" class="mb-0"
+                >Why You Need Virtual Assistant for Your Company</a
+              >
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
