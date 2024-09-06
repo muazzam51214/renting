@@ -4,7 +4,6 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
 
-
 // Show All Listing
 const allListings = asyncHandler(async (req, res) => {
   const listings = await Listing.find({});
@@ -53,7 +52,6 @@ const createListing = asyncHandler(async (req, res) => {
   res.redirect("/listing");
 });
 
-
 // Edit Listing Form
 const editListing = asyncHandler(async (req, res) => {
   const { id } = req.params;
@@ -89,6 +87,14 @@ const updateListing = asyncHandler(async (req, res) => {
   res.redirect(`/listing/${id}`);
 });
 
+// Delete Listing Controller
+const deleteListing = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const deletedListing = await Listing.findByIdAndDelete(id);
+
+  res.redirect("/listing");
+});
+
 export {
   createListing,
   allListings,
@@ -96,4 +102,5 @@ export {
   addNewListing,
   editListing,
   updateListing,
+  deleteListing,
 };
