@@ -35,6 +35,13 @@ const addNewListing = asyncHandler(async (req, res) => {
 // Create Listing Controller
 const createListing = asyncHandler(async (req, res) => {
   const { title, description, price, image, location, country } = req.body;
+  if (
+    [title, description, price, image, location, country].some(
+      (field) => field?.trim() === ""
+    )
+  ) {
+    throw new ApiError(400, "All fields are required");
+  }
   const listing = await Listing.create({
     title,
     description,
@@ -69,7 +76,17 @@ const editListing = asyncHandler(async (req, res) => {
 // Update Listing Controller
 const updateListing = asyncHandler(async (req, res) => {
   const { title, description, price, image, location, country } = req.body;
+  if (
+    [title, description, price, image, location, country].some(
+      (field) => field?.trim() === ""
+    )
+  ) {
+    throw new ApiError(400, "All fields are required");
+  }
   const { id } = req.params;
+  if(id){
+    throw new ApiError(400, "ID not found in params");
+  }
   const listing = await Listing.findByIdAndUpdate(id, {
     title,
     description,

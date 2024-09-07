@@ -19,9 +19,17 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 // Routes Import
 import userRouter from "./routes/user.routes.js";
 import listingRouter from "./routes/listing.routes.js";
+import {notFoundHandler} from "./controllers/root.controllers.js"
 
 // Routes Declaration
 app.use("/users", userRouter);
 app.use("/listing", listingRouter);
+
+app.all("*", notFoundHandler);
+app.use((err,req,res,next) => {
+  let {statusCode=500, message="something went wrong"} = err;
+  // res.status(statusCode).send(message);
+  res.render("error/error.ejs", {message})
+})
 
 export { app };

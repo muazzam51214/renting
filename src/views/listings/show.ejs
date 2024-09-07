@@ -1,7 +1,7 @@
 <% layout("/layouts/boilerplate") %>
 <body>
   <!-- Include Banner -->
-  <%- include("../includes/banner.ejs") %>
+  <%- include("../includes/banner.ejs", { pageTitle: listing.title }) %>
 
   <!-- Single Blog -->
   <section class="singleblog-section blogpage-section">
