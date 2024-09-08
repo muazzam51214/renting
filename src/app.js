@@ -19,11 +19,13 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 // Routes Import
 import userRouter from "./routes/user.routes.js";
 import listingRouter from "./routes/listing.routes.js";
+import reviewRouter from "./routes/review.routes.js";
 import {notFoundHandler} from "./controllers/root.controllers.js"
 
 // Routes Declaration
 app.use("/users", userRouter);
 app.use("/listing", listingRouter);
+app.use("/review", reviewRouter);
 
 app.all("*", notFoundHandler);
 app.use((err,req,res,next) => {

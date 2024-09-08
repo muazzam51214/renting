@@ -105,7 +105,7 @@
                     <%= review.createdAt.toLocaleString("en-US", timeOptions) %>
                   </p>
                   <p class="text-size-14"><%= review.comment %></p>
-                  <form action="/listing/<%= listing._id %>/review/<%= review._id %>?_method=DELETE" method="POST">
+                  <form action="/review/listing/<%= listing._id %>/<%= review._id %>?_method=DELETE" method="POST">
                     <button class="single-listing-btn  text-decoration-none" style="background: red; cursor: pointer; border: none;"> <i class="fa fa-trash"></i> Delete</button>
                   </form>
                 </div>
@@ -120,7 +120,6 @@
                   </p>
 
                   <p class="text-size-14">
-                    <%= listing.reviews[1] %>
                   </p>
                 </div>
               </div> -->
@@ -128,7 +127,7 @@
 
             <div class="content7" data-aos="fade-up" data-aos-duration="700">
               <h4>Leave a Review</h4>
-              <form method="POST" action="/listing/<%= listing._id %>/review">
+              <form method="POST" action="/review/listing/<%= listing._id %>">
                 <div class="row">
                   <div class="col-12">
                     <div class="form-group mb-0">
