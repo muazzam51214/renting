@@ -36,10 +36,13 @@
 
                 <i class="mb-0 calendar fa-solid fa-calendar-days"></i>
                 <span class="mb-0 text-size-14">
-                  <% const date = new Date(listing.createdAt); const options = {
-                  month: 'short', day: 'numeric', year: 'numeric' }; const
-                  formattedDate = date.toLocaleDateString('en-US', options); %>
-                  <%=formattedDate %>
+                  <% const date = new Date(listing.createdAt); const dateOptions
+                  = { month: 'short', day: 'numeric', year: 'numeric' }; const
+                  timeOptions = { hour: '2-digit', minute: '2-digit', hour12:
+                  true  }; 
+                  const formattedDate = date.toLocaleDateString('en-US',dateOptions); 
+                  const formattedTime = date.toLocaleTimeString('en-US', timeOptions);%> 
+                  <%= formattedDate %> at <%= formattedTime %>
                 </span>
 
                 <i class="fa-solid fa-map-marker-alt ml-1"></i>
@@ -79,39 +82,64 @@
             </div>
 
             <!-- Comments List -->
-            <div class="content6 mt-5" data-aos="fade-up" data-aos-duration="700">
-              <h4>2 Comments</h4>
-             
+            <div
+              class="content6 mt-5"
+              data-aos="fade-up"
+              data-aos-duration="700"
+            >
+              <h4><%= listing.reviews.length %> Reviews</h4>
+              <% for(review of listing.reviews) { %>
               <div class="comment">
+                <div class="mt-3">
+                  <h5>
+                    Muazzam (<%= review.rating %>
+                    <i
+                      class="fa fa-star"
+                      style="color: var(--mustard-color)"
+                    ></i
+                    >)
+                  </h5>
+
+                  <p class="text-size-14" style="color: var(--mustard-color)">
+                    <%= review.createdAt.toLocaleString("en-US", dateOptions) %> at 
+                    <%= review.createdAt.toLocaleString("en-US", timeOptions) %>
+                  </p>
+                  <p class="text-size-14"><%= review.comment %></p>
+                  <form action="/listing/<%= listing._id %>/review/<%= review._id %>?_method=DELETE" method="POST">
+                    <button class="single-listing-btn  text-decoration-none" style="background: red; cursor: pointer; border: none;"> <i class="fa fa-trash"></i> Delete</button>
+                  </form>
+                </div>
+              </div>
+              <% } %>
+              <!-- <div class="comment">
                 <div class="mt-3">
                   <h5>Samantha Nicolan</h5>
 
-                  <p class="text-size-14" style="color: var(--mustard-color);">Dec 29, 2022</p>
+                  <p class="text-size-14" style="color: var(--mustard-color)">
+                    Dec 29, 2022
+                  </p>
 
                   <p class="text-size-14">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+                    <%= listing.reviews[1] %>
                   </p>
                 </div>
-              </div>
+              </div> -->
             </div>
-
-            
 
             <div class="content7" data-aos="fade-up" data-aos-duration="700">
               <h4>Leave a Review</h4>
-              <form method="POST">
+              <form method="POST" action="/listing/<%= listing._id %>/review">
                 <div class="row">
                   <div class="col-12">
                     <div class="form-group mb-0">
-                      <label for="review">Write Review</label>
+                      <label for="comment">Write comment</label>
                       <textarea
                         class="form_style"
-                        placeholder="Write your review here..."
+                        placeholder="Write your comment here..."
                         rows="3"
-                        name="review"
-                        id="review"
+                        name="comment"
+                        id="comment"
+                        required
                       ></textarea>
                     </div>
                   </div>
@@ -120,17 +148,25 @@
                   <div class="col-12">
                     <div class="form-group mb-0">
                       <label for="rating">Select Rating</label>
-                      <span>(<span id="ratingValue">3.0</span>)</span>
-                      <input type="range" class="form_style" name="rating" placeholder="Rating" id="rating" max="5.0" min="1.0" step="0.1" value="3.0" style="padding:0;">
 
+                      <input
+                        type="range"
+                        class="form_style"
+                        name="rating"
+                        placeholder="Rating"
+                        id="rating"
+                        max="5.0"
+                        min="1.0"
+                        step="0.1"
+                        value="3.0"
+                        style="padding: 0"
+                      />
                     </div>
                   </div>
                 </div>
-               
+
                 <div class="button text-center">
-                  <button type="submit" class="post_comment">
-                    Post Review
-                  </button>
+                  <button class="post_comment">Post Review</button>
                 </div>
               </form>
             </div>
@@ -147,8 +183,8 @@
               </li>
 
               <li class="mt-3">
-                <i class="fa fa-calendar-days" style="color: #1ec28b"></i> <%=
-                listing.createdAt.toLocaleString("en-PK", options) %>
+                <i class="fa fa-calendar-days" style="color: #1ec28b"></i> 
+                <%= listing.createdAt.toLocaleString("en-PK", dateOptions) %> at <%= listing.createdAt.toLocaleString("en-PK", timeOptions) %>
               </li>
 
               <li class="mt-3">
