@@ -56,126 +56,84 @@
               <p class="text-size-14"><%= listing.description %></p>
 
               <div class="button mt-4 d-flex">
-                <a href="/listing/<%= listing._id %>/edit" class="single-listing-btn">
+                <a
+                  href="/listing/<%= listing._id %>/edit"
+                  class="single-listing-btn"
+                >
                   <i class="fa fa-pencil" style="color: #fff"></i> Edit Listing
                 </a>
-               
 
                 <form
-                method="POST"
-                action="/listing/<%= listing._id %>?_method=DELETE"
-              >
-                <button style="background-color: red; border: none; cursor: pointer;" class="single-listing-btn ml-3"><i class="fa fa-trash" style="color: #fff"></i> Delete Listing</button>
-              </form>
+                  method="POST"
+                  action="/listing/<%= listing._id %>?_method=DELETE"
+                >
+                  <button
+                    style="background-color: red; border: none; cursor: pointer"
+                    class="single-listing-btn ml-3"
+                  >
+                    <i class="fa fa-trash" style="color: #fff"></i> Delete
+                    Listing
+                  </button>
+                </form>
               </div>
             </div>
 
-            <!-- <div class="content6" data-aos="fade-up" data-aos-duration="700">
+            <!-- Comments List -->
+            <div class="content6 mt-5" data-aos="fade-up" data-aos-duration="700">
               <h4>2 Comments</h4>
+             
               <div class="comment">
-                <div class="image" data-aos="flip-left">
-                  <img
-                    alt="image"
-                    src="/assets/images/singleblog-review2.png"
-                    class="avatar"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="content">
-                  <h5>Roseanne Williams</h5>
-                  <span class="text-size-14">Dec 29, 2022</span>
-                  <a class="reply text-decoration-none" href="#">Reply</a>
-                  <div class="text_holder">
-                    <p class="text-size-14">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud
-                      exercitation.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="comment">
-                <div class="image" data-aos="flip-left">
-                  <img
-                    alt="image"
-                    src="/assets/images/singleblog-review3.png"
-                    class="avatar"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="content">
+                <div class="mt-3">
                   <h5>Samantha Nicolan</h5>
-                  <span class="text-size-14">Dec 29, 2022</span>
-                  <a class="reply text-decoration-none" href="#">Reply</a>
-                  <div class="text_holder">
-                    <p class="text-size-14">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud
-                      exercitation.
-                    </p>
-                  </div>
+
+                  <p class="text-size-14" style="color: var(--mustard-color);">Dec 29, 2022</p>
+
+                  <p class="text-size-14">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+                  </p>
                 </div>
               </div>
-            </div> -->
+            </div>
 
-            <!-- <div class="content7" data-aos="fade-up" data-aos-duration="700">
-              <h4>Leave a Comment</h4>
-              <form id="blogpage" method="POST">
+            
+
+            <div class="content7" data-aos="fade-up" data-aos-duration="700">
+              <h4>Leave a Review</h4>
+              <form method="POST">
                 <div class="row">
                   <div class="col-12">
                     <div class="form-group mb-0">
+                      <label for="review">Write Review</label>
                       <textarea
                         class="form_style"
-                        placeholder="Enter your comment here..."
+                        placeholder="Write your review here..."
                         rows="3"
-                        name="msg"
+                        name="review"
+                        id="review"
                       ></textarea>
                     </div>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group mb-0">
-                      <input
-                        type="text"
-                        class="form_style"
-                        placeholder="Your name"
-                        name="name"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group mb-0">
-                      <input
-                        type="email"
-                        class="form_style"
-                        placeholder="Your e-mail"
-                        name="emailid"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
                   <div class="col-12">
                     <div class="form-group mb-0">
-                      <input
-                        type="text"
-                        class="form_style text-mb"
-                        placeholder="Your topic"
-                        name="topic"
-                      />
+                      <label for="rating">Select Rating</label>
+                      <span>(<span id="ratingValue">3.0</span>)</span>
+                      <input type="range" class="form_style" name="rating" placeholder="Rating" id="rating" max="5.0" min="1.0" step="0.1" value="3.0" style="padding:0;">
+
                     </div>
                   </div>
                 </div>
+               
                 <div class="button text-center">
                   <button type="submit" class="post_comment">
-                    Post Comment
+                    Post Review
                   </button>
                 </div>
               </form>
-            </div> -->
+            </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-12 col-sm-12 col-12 column">

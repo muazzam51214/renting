@@ -26,6 +26,12 @@ const listingSchema = new Schema(
       enum: ["pakistan", "india", "usa", "china", "bangladesh", "iran", "iraq"],
       default: "pakistan",
     },
+    reviews: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Review",
+      },
+    ],
   },
   { timestamps: true }
 );

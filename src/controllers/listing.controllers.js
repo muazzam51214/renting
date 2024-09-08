@@ -84,7 +84,7 @@ const updateListing = asyncHandler(async (req, res) => {
     throw new ApiError(400, "All fields are required");
   }
   const { id } = req.params;
-  if(id){
+  if(!id){
     throw new ApiError(400, "ID not found in params");
   }
   const listing = await Listing.findByIdAndUpdate(id, {
