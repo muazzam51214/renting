@@ -23,7 +23,8 @@ const getListingById = asyncHandler(async (req, res) => {
     options: { sort: { createdAt: -1 } },
   });
   if (!listing) {
-    throw new ApiError(400, "Listing not found!");
+    req.flash("failure", "Listing Does Not Exists!");
+    res.redirect("/listing");
   }
 
   res.render("listings/show.ejs", { listing });
@@ -69,7 +70,8 @@ const editListing = asyncHandler(async (req, res) => {
   }
   const listing = await Listing.findById(id);
   if (!listing) {
-    throw new ApiError(400, "Listing not found!");
+    req.flash("failure", "Listing Does Not Exists!");
+    res.redirect("/listing");
   }
 
   res.render("listings/edit.ejs", { listing });
