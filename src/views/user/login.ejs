@@ -1,0 +1,78 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+  <!-- Include Banner -->
+
+
+  <!-- CONTACT FORM SECTION  -->
+  <section
+    class="float-left w-100 talk-width-our-team-con position-relative main-box padding-top padding-bottom"
+  >
+    <div class="container wow bounceInUp" data-wow-duration="2s">
+      <div class="heading-title text-center">
+        <h4 class="text-uppercase">Sign In</h4>
+        <h2 class="">Login Here</h2>
+        <!-- heading title -->
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="register-box">
+            <form method="POST" action="/login">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="username">Username :</label>
+                        <input
+                          type="text"
+                          class="form_style"
+                          placeholder="Enter Username"
+                          name="username"
+                          id="username"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    
+                    <div class="col-12">
+                      <div class="form-group fon-con">
+                        <label for="password">Password :</label>
+                        <input
+                          type="password"
+                          class="mb-md-0 form_style"
+                          placeholder="Enter Password"
+                          name="password"
+                          id="password"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-12 mt-5"></div>
+                      <div class="manage-button ml-3">
+                        <button
+                          type="submit"
+                          class="register_now text-white text-decoration-none w-100"
+                        >
+                          Login
+                        </button>
+                      </div>
+                    </div>
+
+                  
+
+                  </div>
+                </div>
+                
+                
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- container -->
+    </div>
+    <!-- talk with our team con -->
+  </section>
+</body>

@@ -5,6 +5,9 @@ import path from "path";
 import { fileURLToPath } from "url";
 import session from "express-session";
 import flash from "connect-flash";
+import passport from "passport";
+import LocalStrategy from "passport-local";
+import {User} from "./models/user.model.js";
 
 const app = express();
 // Setting View Engine
@@ -33,6 +36,13 @@ const sessionOptions = {
 
 app.use(session(sessionOptions));
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.failure = req.flash("failure");
@@ -48,9 +58,9 @@ import reviewRouter from "./routes/review.routes.js";
 import { notFoundHandler } from "./controllers/root.controllers.js";
 
 // Routes Declaration
-app.use("/users", userRouter);
 app.use("/listing", listingRouter);
 app.use("/review", reviewRouter);
+app.use("/", userRouter);
 
 app.all("*", notFoundHandler);
 app.use((err, req, res, next) => {
