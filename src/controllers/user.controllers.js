@@ -49,6 +49,7 @@ const authCallback = (req, res, next) => {
           if (err) {
               return next(err); // Handle errors during login
           }
+          req.flash('success', `Welcome ${user.username}. You logged In`);
           return res.redirect('/listing'); // Redirect to desired page
       });
   })(req, res, next);
