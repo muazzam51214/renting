@@ -1,0 +1,30 @@
+ <!-- Show Alert For Success  -->
+ <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+ <% if (success && success.length) { %>
+   <script>
+     Toastify({
+       text: "<%= success %>",
+       duration: 4000,  // 3 seconds duration
+       gravity: "top",  // Positioning the toast at the top of the page
+       position: "right",  // Displaying it on the right
+       backgroundColor: "#1ec28b",  // Green background for success
+       close: true  // Add close button to the toast
+     }).showToast();
+   </script>
+ <% } %>
+
+
+ <!-- Show Alert For Failure  -->
+ <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+ <% if (failure && failure.length) { %>
+   <script>
+     Toastify({
+       text: "<%= failure %>",
+       duration: 4000,  // 3 seconds duration
+       gravity: "top",  // Positioning the toast at the top of the page
+       position: "right",  // Displaying it on the right
+       backgroundColor: "#ff0000",  // Green background for success
+       close: true  // Add close button to the toast
+     }).showToast();
+   </script>
+ <% } %>

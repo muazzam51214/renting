@@ -57,7 +57,7 @@ const createListing = asyncHandler(async (req, res) => {
   if (!createListing) {
     throw new ApiError(500, "Something went wrong while adding listing");
   }
-
+  req.flash("success", "New Listing Created Successfully!");
   res.redirect("/listing");
 });
 
@@ -103,6 +103,7 @@ const updateListing = asyncHandler(async (req, res) => {
     throw new ApiError(500, "Something went wrong while updating listing");
   }
 
+  req.flash("success", "Listing Updated Successfully!");
   res.redirect(`/listing/${id}`);
 });
 
@@ -111,9 +112,9 @@ const deleteListing = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const deletedListing = await Listing.findByIdAndDelete(id);
 
+  req.flash("failure", "Listing Deleted!");
   res.redirect("/listing");
 });
-
 
 export {
   createListing,

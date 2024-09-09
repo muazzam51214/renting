@@ -29,7 +29,7 @@ const addReview = asyncHandler(async (req, res) => {
   const listing = await Listing.findById(id);
   listing.reviews.push(createdReview);
   await listing.save();
-
+  req.flash("success", "New Review Added Successfully!");
   res.redirect(`/listing/${id}`);
 });
 
@@ -37,7 +37,7 @@ const deleteReview = asyncHandler(async (req, res) => {
   const { id, reviewId } = req.params;
   await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
   await Review.findByIdAndDelete(reviewId);
-
+  req.flash("failure", "Review Deleted!");
   res.redirect(`/listing/${id}`);
 });
 
