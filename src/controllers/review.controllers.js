@@ -19,6 +19,7 @@ const addReview = asyncHandler(async (req, res) => {
   const newReview = await Review.create({
     comment,
     rating,
+    owner : req.user._id
   });
 
   const createdReview = await Review.findById(newReview._id);

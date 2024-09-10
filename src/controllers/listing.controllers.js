@@ -22,6 +22,9 @@ const getListingById = asyncHandler(async (req, res) => {
   const listing = await Listing.findById(id).populate({
     path: "reviews",
     options: { sort: { createdAt: -1 } },
+    populate: {
+      path: 'owner',
+    }
   }).populate("owner");
   if (!listing) {
     req.flash("failure", "Listing Does Not Exists!");
