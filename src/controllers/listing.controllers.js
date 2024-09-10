@@ -3,6 +3,7 @@ import { Listing } from "../models/listing.model.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 
+
 // Show All Listing
 const allListings = asyncHandler(async (req, res) => {
   const listings = await Listing.find({}).sort({ createdAt: -1 });
@@ -21,7 +22,7 @@ const getListingById = asyncHandler(async (req, res) => {
   const listing = await Listing.findById(id).populate({
     path: "reviews",
     options: { sort: { createdAt: -1 } },
-  });
+  }).populate("owner");
   if (!listing) {
     req.flash("failure", "Listing Does Not Exists!");
     res.redirect("/listing");
@@ -52,6 +53,7 @@ const createListing = asyncHandler(async (req, res) => {
     price,
     location,
     country,
+    owner : req.user._id
   });
 
   const createdListing = await Listing.findById(listing._id);

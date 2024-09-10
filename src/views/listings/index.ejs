@@ -1,11 +1,8 @@
 <% layout("/layouts/boilerplate") %>
 <body>
-
- 
   <!-- Include Banner -->
 
   <%- include("../includes/banner.ejs", { pageTitle: 'All Listings' }) %>
-  
 
   <!-- TOP DESTINATIONS SECTION -->
   <section
@@ -24,37 +21,39 @@
       <div class="row">
         <% for(let listing of listings){ %>
         <div class="col-lg-4 col-md-6">
-            <div class="destination-box position-relative">
-              <div class="orange-tag position-absolute">
-                Rs.<%= listing.price.toLocaleString("en-PK") %> / Mon
-              </div>
+          <div class="destination-box position-relative">
+            
+            <a href="/listing/<%= listing._id %>">
+              <figure>
+                <img src="<%= listing.image %>" alt="image" class="img-fluid" />
+              </figure>
+            </a>
+            <div class="bottom-con">
+              <span class="d-block text-uppercase">
+                <%= listing.location %>
+              </span>
               <a href="/listing/<%= listing._id %>">
-                <figure>
-                  <img src="<%= listing.image %>" alt="image" class="img-fluid" />
-                </figure>
+                <h4 style="font-size: 20px; font-weight: 600">
+                  <%= listing.title %>
+                </h4>
               </a>
-              <div class="bottom-con">
-                <span class="d-block text-uppercase">
-                  <%= listing.location %>
-                </span>
-                <a href="/listing/<%= listing._id %>">
-                  <h4 style="font-size: 20px; font-weight: 600;"><%= listing.title %></h4>
-                </a>
-                <!-- Reviews Count -->
-                <!-- <span class="d-inline-block star-con"
+              <p style="font-weight: 500; font-size: 16px;">
+                @ Rs.<%= listing.price.toLocaleString("en-PK") %>/ Month
+              </p>
+              <!-- Reviews Count -->
+              <!-- <span class="d-inline-block star-con"
                   ><i class="fa-solid fa-star"></i> 4.9
                   <span class="d-inline-block review-span"
                     >(1.7k Review)</span
                   ></span
                 > -->
-                <!-- bottom con -->
-              </div>
-              <!-- destination-box -->
+              <!-- bottom con -->
             </div>
-
+            <!-- destination-box -->
+          </div>
         </div>
         <% } %>
- 
+
         <!-- row -->
       </div>
 
