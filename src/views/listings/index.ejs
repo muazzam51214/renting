@@ -2,23 +2,25 @@
 <body>
   <!-- Include Banner -->
 
-  <%- include("../includes/banner.ejs", { pageTitle: 'All Listings' }) %>
+  <%- include("../includes/banner.ejs", { pageTitle: title1 }) %>
 
   <!-- TOP DESTINATIONS SECTION -->
   <section
     class="float-left w-100 top-destinations-con position-relative padding-top padding-bottom main-box"
   >
+  <% if(listings && listings.length){ %>
     <div
       class="container destination-con2 wow bounceInUp"
       data-wow-duration="2s"
     >
       <div class="heading-title text-center">
-        <h4 class="text-uppercase">All Listings</h4>
-        <h2 class="">All Listings in One Place!</h2>
+        <h4 class="text-uppercase"><%= title1 %></h4>
+        <h2><%= title2 %></h2>
         <!-- heading title -->
       </div>
 
       <div class="row">
+
         <% for(let listing of listings){ %>
         <div class="col-lg-4 col-md-6">
           <div class="destination-box position-relative">
@@ -55,10 +57,17 @@
         <% } %>
 
         <!-- row -->
+        <% } else{ %>
+          <h2 class="d-block text-center">No Listing Available</h2>
+          <div class="button mt-5 text-center">
+            <a href="/listing/new/" class="single-listing-btn"> Create Listing </a>
+          </div>
+
       </div>
 
       <!-- container -->
     </div>
+    <% } %>
     <!-- top destinations con -->
   </section>
 </body>
