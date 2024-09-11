@@ -16,13 +16,13 @@
       <div class="row">
         <div class="col-12">
           <div class="register-box">
-            <form method="POST" action="/listing/">
+            <form method="POST" action="/listing/" enctype="multipart/form-data">
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                   <div class="row">
                     <div class="col-12">
                       <div class="form-group">
-                        <label for="title">Title :</label>
+                        <label for="title">Enter Title :</label>
                         <input
                           type="text"
                           class="form_style"
@@ -36,7 +36,7 @@
 
                     <div class="col-12">
                       <div class="form-group">
-                        <label for="price">Price :</label>
+                        <label for="price">Enter Price/Rent Per Month :</label>
                         <input
                           type="number"
                           class="form_style"
@@ -50,7 +50,7 @@
                     
                     <div class="col-12">
                       <div class="form-group fon-con">
-                        <label for="location">Location :</label>
+                        <label for="location">Enter Location :</label>
                         <input
                           type="text"
                           class="mb-md-0 form_style"
@@ -64,15 +64,18 @@
 
                     <div class="col-12">
                       <div class="form-group fon-con">
-                        <label for="country">Country :</label>
-                        <input
-                          type="text"
-                          class="mb-md-0 form_style"
-                          placeholder="Enter Country"
-                          name="country"
-                          id="country"
-                          required
-                        />
+                        <br>
+                        <label for="country">Select Country :</label>
+                        <select name="country" id="country">
+                          <option value="pakistan">Pakistan</option>
+                          <option value="india">India</option>
+                          <option value="usa">USA</option>
+                          <option value="china">China</option>
+                          <option value="bangladesh">Bangladesh</option>
+                          <option value="iran">Iran</option>
+                          <option value="iraq">Iraq</option>
+                        </select>
+                       
                       </div>
                     </div>
 
@@ -83,21 +86,22 @@
 
                     <div class="col-12">
                       <div class="form-group fon-con">
-                        <label for="image">Image :</label>
-                        <input
-                          type="text"
+                        <label for="image">Upload Image :</label>
+                        <input 
+                          type="file" 
+                          accept="image/*"
                           class="mb-md-0 form_style"
-                          placeholder="Enter Image URL / Link"
-                          name="image"
-                          id="image"
-                          required
-                        />
+                          placeholder="Upload image" 
+                          name="image" 
+                          id="image" 
+                          required />
                       </div>
                     </div>
 
                     <div class="col-12">
                       <div class="form-group mb-0">
-                        <label for="description">Description :</label>
+                        <br>
+                        <label for="description">Write Description :</label>
                         <textarea
                           class="form_style"
                           placeholder="Add Description:"

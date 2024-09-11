@@ -5,7 +5,7 @@ import { Review } from "../models/review.model.js";
 export const isOwnerForListing = asyncHandler(async (req, res, next) => {
   const { id } = req.params;
   const listing = await Listing.findById(id);
-  if (listing && listing.owner._id === req.user._id) {
+  if (listing && listing.owner._id.equals(req.user._id)) {
     return next();
   }
 

@@ -16,13 +16,13 @@
       <div class="row">
         <div class="col-12">
           <div class="register-box">
-            <form method="POST" action="/listing/<%= listing._id %>?_method=PUT">
+            <form method="POST" action="/listing/<%= listing._id %>?_method=PUT"  enctype="multipart/form-data">
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                   <div class="row">
                     <div class="col-12">
                       <div class="form-group">
-                        <label for="title">Title :</label>
+                        <label for="title">Enter Title :</label>
                         <input
                           type="text"
                           class="form_style"
@@ -35,7 +35,7 @@
 
                     <div class="col-12">
                       <div class="form-group">
-                        <label for="price">Price :</label>
+                        <label for="price">Enter Price/Rent Per Month :</label>
                         <input
                           type="number"
                           class="form_style"
@@ -48,7 +48,7 @@
                     
                     <div class="col-12">
                       <div class="form-group fon-con">
-                        <label for="location">Location :</label>
+                        <label for="location">Enter Location :</label>
                         <input
                           type="text"
                           class="mb-md-0 form_style"
@@ -61,14 +61,60 @@
 
                     <div class="col-12">
                       <div class="form-group fon-con">
-                        <label for="country">Country :</label>
-                        <input
-                          type="text"
-                          class="mb-md-0 form_style"
-                          value="<%= listing.country %>"
-                          name="country"
-                          id="country"
-                        />
+                        <br>
+                        <label for="country">Select Country :</label>
+                        <select name="country" id="country" value="<%= listing.country %>">
+
+                          <option 
+                            value="pakistan" 
+                            <%= listing.country === 'pakistan' ? 'selected' : '' %>
+                            >
+                            Pakistan
+                          </option>
+
+                          <option 
+                            value="india" 
+                            <%= listing.country === 'india' ? 'selected' : '' %>
+                            >
+                            India
+                          </option>
+
+                          <option 
+                            value="usa" 
+                            <%= listing.country === 'usa' ? 'selected' : '' %>
+                            >
+                            USA
+                          </option>
+
+                          <option 
+                            value="china" 
+                            <%= listing.country === 'china' ? 'selected' : '' %>
+                            >
+                            China
+                          </option>
+
+                          <option 
+                            value="bangladesh" 
+                            <%= listing.country === 'bangladesh' ? 'selected' : '' %>
+                            >
+                            Bangladesh
+                          </option>
+
+                          <option 
+                            value="iran" 
+                            <%= listing.country === 'iran' ? 'selected' : '' %>
+                            >
+                            Iran
+                          </option>
+
+                          <option 
+                            value="iraq" 
+                            <%= listing.country === 'iraq' ? 'selected' : '' %>
+                            >
+                            Iraq
+                          </option>
+
+                        </select>
                       </div>
                     </div>
 
@@ -78,21 +124,26 @@
                   <div class="row">
 
                     <div class="col-12">
+                      <label>Orignal Image</label>
+                      <img src="<%= listing.image.replace("/upload", "/upload/w_100") %>" alt="">
                       <div class="form-group fon-con">
-                        <label for="image">Image :</label>
-                        <input
-                          type="text"
+                        <label for="image">Change Image (Optional) :</label>
+                          <input 
+                          type="file" 
+                          accept="image/*"
                           class="mb-md-0 form_style"
+                          placeholder="Upload image" 
+                          name="image" 
+                          id="image" 
                           value="<%= listing.image %>"
-                          name="image"
-                          id="image"
                         />
                       </div>
                     </div>
 
                     <div class="col-12">
                       <div class="form-group mb-0">
-                        <label for="description">Description :</label>
+                        <br>
+                        <label for="description">Enter Description :</label>
                         <textarea
                           class="form_style"
                           name="description"
