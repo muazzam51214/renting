@@ -4,10 +4,12 @@ import ejsMate from "ejs-mate";
 import path from "path";
 import { fileURLToPath } from "url";
 import session from "express-session";
+import MongoStore from "connect-mongo";
 import flash from "connect-flash";
 import passport from "passport";
 import LocalStrategy from "passport-local";
-import {User} from "./models/user.model.js";
+import { User } from "./models/user.model.js";
+import { DB_NAME } from "./constants.js";
 
 const app = express();
 // Setting View Engine
@@ -22,8 +24,22 @@ app.use(express.static("public"));
 app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 
+//  MongoDB Session Store
+const store = MongoStore.create({
+  mongoUrl: `${process.env.MONGODB_URI}/${DB_NAME}`,
+  crypto : {
+    secret : process.env.ACCESS_TOKEN_SECRET
+  },
+  touchAfter : 24 * 60 * 60
+});
+
+store.on("error", (error) => {
+  console.log("Error in Mongo Session Store", error);
+})
+
 // Setting Express Sesssion
 const sessionOptions = {
+  store,
   secret: process.env.ACCESS_TOKEN_SECRET,
   resave: false,
   saveUninitialized: true,
@@ -33,6 +49,7 @@ const sessionOptions = {
     httpOnly: true,
   },
 };
+
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -48,9 +65,7 @@ app.use((req, res, next) => {
   res.locals.failure = req.flash("failure");
   res.locals.currentUser = req.user;
   next();
-})
-
-
+});
 
 // Routes Import
 import userRouter from "./routes/user.routes.js";
