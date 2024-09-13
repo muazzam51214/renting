@@ -1,11 +1,24 @@
 <div class="w-100 float-left top-bar-con main-box">
   <div class="container">
-    <div class="top-bar-inner-con d-flex align-items-center justify-content-between">
+    <div
+      class="top-bar-inner-con d-flex align-items-center justify-content-between"
+    >
       <div class="left-con">
         <a href="#"><i class="fa-solid fa-envelope"></i> info@easystay.com</a>
         <!-- left con -->
       </div>
-      <div class="right-con"><a href="#"><i class="fa-solid fa-square-phone"></i> +92 000 0000000</a>
+      <% if(currentUser){ %>
+      <div class="left-con">
+        <a
+          ><i class="fa-solid fa-user"></i> Welcome <%=
+          currentUser.username.charAt(0).toUpperCase() +
+          currentUser.username.slice(1) %>
+        </a>
+        <!-- left con -->
+      </div>
+      <% } %>
+      <div class="right-con">
+        <a href="#"><i class="fa-solid fa-square-phone"></i> +92 000 0000000</a>
         <!-- right con -->
       </div>
       <!-- top bar inner con -->
@@ -19,14 +32,20 @@
 <header class="w-100 flaot-left header-con main-box position-relative">
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand" href="/">
+      <a class="navbar-brand" href="/listing/">
         <figure class="mb-0">
-          <img src="/assets/images/logo-icon.png" alt="logo-icon">
+          <img src="/assets/images/logo-icon.png" alt="logo-icon" />
         </figure>
       </a>
-      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
-        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-        aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler collapsed"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
         <span class="navbar-toggler-icon"></span>
         <span class="navbar-toggler-icon"></span>
@@ -34,7 +53,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link p-0" href="/">Home</a>
+            <a class="nav-link p-0" href="/listing/">Home</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link p-0" href="/listing/">All Listings</a>
@@ -54,12 +73,14 @@
             <a class="nav-link p-0" href="/logout/">Logout</a>
           </li>
           <% } %>
-
         </ul>
         <div class="header-contact">
           <ul class="list-unstyled mb-0">
-            <li><a href="/listing/new/" class="live-chat-btn d-inline-block"><i class="fa-solid fa-home"></i>
-                Add New Listing</a></li>
+            <li>
+              <a href="/listing/new/" class="live-chat-btn d-inline-block"
+                ><i class="fa-solid fa-home"></i> Add New Listing</a
+              >
+            </li>
             <!-- list unstyled -->
           </ul>
           <!-- header contact -->
