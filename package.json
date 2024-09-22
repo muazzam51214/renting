@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js",
+    "start": "nodemon src/index.js"
   },
   "keywords": [
     "renting",
@@ -26,7 +27,9 @@
     "multer": "^1.4.5-lts.1",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^8.0.0"
+    "passport-local-mongoose": "^8.0.0",
+    "stripe": "^16.11.0",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "dotenv": "^16.4.5",

@@ -10,7 +10,11 @@ const allListings = asyncHandler(async (req, res) => {
   if (!listings) {
     throw new ApiError(500, "Something went wrong while adding listing!");
   }
-  res.render("listings/index.ejs", { listings, title1: "All Listings", title2: "All Listings in One Place!" });
+  res.render("listings/index.ejs", {
+    listings,
+    title1: "All Listings",
+    title2: "All Listings in One Place!",
+  });
 });
 
 // Show Single Listing By ID
@@ -33,7 +37,10 @@ const getListingById = asyncHandler(async (req, res) => {
     res.redirect("/listing");
   }
 
-  res.render("listings/show.ejs", { listing });
+  res.render("listings/show.ejs", {
+    listing,
+    key: process.env.STRIPE_PUBLISHABLE_KEY,
+  });
 });
 
 // Add New Listing Form
@@ -123,13 +130,11 @@ const updateListing = asyncHandler(async (req, res) => {
     country,
   });
 
-
   const updatedListing = await Listing.findById(listing._id);
   if (!updatedListing) {
     throw new ApiError(500, "Something went wrong while updating listing");
   }
 
-  
   if (req.file) {
     const imageLocalPath = req.file?.path;
     if (!imageLocalPath) {
@@ -143,7 +148,7 @@ const updateListing = asyncHandler(async (req, res) => {
       req.flash("failure", "Listing Image is required");
       res.redirect(`/listing/${id}/edit`);
     }
-    
+
     updatedListing.image = listingImage.url;
     await updatedListing.save();
   }
@@ -161,14 +166,21 @@ const deleteListing = asyncHandler(async (req, res) => {
   res.redirect("/listing");
 });
 
-const myListings = asyncHandler( async(req, res) => {
-  const listings = await Listing.find({owner : req.user._id}).sort({ createdAt: -1 });
+const myListings = asyncHandler(async (req, res) => {
+  const listings = await Listing.find({ owner: req.user._id }).sort({
+    createdAt: -1,
+  });
   if (!listings) {
     throw new ApiError(500, "Something went wrong while adding listing!");
   }
-  res.render("listings/index.ejs", { listings, title1: "My Lisitngs", title2: `${req.user.username.charAt(0).toUpperCase() +
-    req.user.username.slice(1)}'s Listings` });
-})
+  res.render("listings/index.ejs", {
+    listings,
+    title1: "My Lisitngs",
+    title2: `${
+      req.user.username.charAt(0).toUpperCase() + req.user.username.slice(1)
+    }'s Listings`,
+  });
+});
 
 export {
   createListing,
@@ -178,5 +190,5 @@ export {
   editListing,
   updateListing,
   deleteListing,
-  myListings
+  myListings,
 };

@@ -45,10 +45,10 @@
                   <% const date = new Date(listing.createdAt); const dateOptions
                   = { month: 'short', day: 'numeric', year: 'numeric' }; const
                   timeOptions = { hour: '2-digit', minute: '2-digit', hour12:
-                  true  }; 
-                  const formattedDate = date.toLocaleDateString('en-US',dateOptions); 
-                  const formattedTime = date.toLocaleTimeString('en-US', timeOptions);%> 
-                  <%= formattedDate %> at <%= formattedTime %>
+                  true }; const formattedDate =
+                  date.toLocaleDateString('en-US',dateOptions); const
+                  formattedTime = date.toLocaleTimeString('en-US',
+                  timeOptions);%> <%= formattedDate %> at <%= formattedTime %>
                 </span>
 
                 <i class="fa-solid fa-map-marker-alt ml-1"></i>
@@ -64,7 +64,8 @@
               </div>
               <p class="text-size-14"><%= listing.description %></p>
 
-              <% if(currentUser && currentUser._id.equals(listing.owner._id)) { %>
+              <% if(currentUser && currentUser._id.equals(listing.owner._id)) {
+              %>
 
               <div class="button mt-4 d-flex">
                 <a
@@ -98,35 +99,45 @@
               data-aos-duration="700"
             >
               <h4><%= listing.reviews.length %> Reviews</h4>
-              <% if(listing.reviews.length > 0){ %>
-              <% for(review of listing.reviews) { %>
+              <% if(listing.reviews.length > 0){ %> <% for(review of
+              listing.reviews) { %>
               <div class="comment">
                 <div class="mt-3">
                   <h5>
-                   
                     @<%= review.owner.username %>
-                    <p class="starability-result" data-rating="<%= review.rating %>">
+                    <p
+                      class="starability-result"
+                      data-rating="<%= review.rating %>"
+                    >
                       Rated : <%= review.rating %> Stars
                     </p>
-                   
                   </h5>
 
                   <p class="text-size-14" style="color: var(--mustard-color)">
-                    <%= review.createdAt.toLocaleString("en-US", dateOptions) %> at 
-                    <%= review.createdAt.toLocaleString("en-US", timeOptions) %>
+                    <%= review.createdAt.toLocaleString("en-US", dateOptions) %>
+                    at <%= review.createdAt.toLocaleString("en-US", timeOptions)
+                    %>
                   </p>
                   <p class="text-size-14"><%= review.comment %></p>
 
-                  <% if(currentUser && currentUser._id.equals(review.owner._id)) {%>
-                  <form action="/review/listing/<%= listing._id %>/<%= review._id %>?_method=DELETE" method="POST" onsubmit="return confirm('Are you sure you want to delete this review?');">
-                    <button class="single-listing-btn  text-decoration-none" style="background: red; cursor: pointer; border: none;"> <i class="fa fa-trash"></i> Delete</button>
+                  <% if(currentUser && currentUser._id.equals(review.owner._id))
+                  {%>
+                  <form
+                    action="/review/listing/<%= listing._id %>/<%= review._id %>?_method=DELETE"
+                    method="POST"
+                    onsubmit="return confirm('Are you sure you want to delete this review?');"
+                  >
+                    <button
+                      class="single-listing-btn text-decoration-none"
+                      style="background: red; cursor: pointer; border: none"
+                    >
+                      <i class="fa fa-trash"></i> Delete
+                    </button>
                   </form>
                   <% } %>
-
                 </div>
               </div>
-              <% } %>
-              <% } %>
+              <% } %> <% } %>
               <!-- <div class="comment">
                 <div class="mt-3">
                   <h5>Samantha Nicolan</h5>
@@ -165,21 +176,56 @@
                       <label for="rating">Select Rating</label>
 
                       <fieldset class="starability-slot">
-                        <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="1" checked aria-label="No rating." />
-                        <input type="radio" id="first-rate1" name="rating" value="1" />
+                        <input
+                          type="radio"
+                          id="no-rate"
+                          class="input-no-rate"
+                          name="rating"
+                          value="1"
+                          checked
+                          aria-label="No rating."
+                        />
+                        <input
+                          type="radio"
+                          id="first-rate1"
+                          name="rating"
+                          value="1"
+                        />
                         <label for="first-rate1" title="Terrible">1 star</label>
-                        <input type="radio" id="first-rate2" name="rating" value="2" />
-                        <label for="first-rate2" title="Not good">2 stars</label>
-                        <input type="radio" id="first-rate3" name="rating" value="3" />
+                        <input
+                          type="radio"
+                          id="first-rate2"
+                          name="rating"
+                          value="2"
+                        />
+                        <label for="first-rate2" title="Not good"
+                          >2 stars</label
+                        >
+                        <input
+                          type="radio"
+                          id="first-rate3"
+                          name="rating"
+                          value="3"
+                        />
                         <label for="first-rate3" title="Average">3 stars</label>
-                        <input type="radio" id="first-rate4" name="rating" value="4" />
-                        <label for="first-rate4" title="Very good">4 stars</label>
-                        <input type="radio" id="first-rate5" name="rating" value="5" />
+                        <input
+                          type="radio"
+                          id="first-rate4"
+                          name="rating"
+                          value="4"
+                        />
+                        <label for="first-rate4" title="Very good"
+                          >4 stars</label
+                        >
+                        <input
+                          type="radio"
+                          id="first-rate5"
+                          name="rating"
+                          value="5"
+                        />
                         <label for="first-rate5" title="Amazing">5 stars</label>
                       </fieldset>
-
                     </div>
-
                   </div>
                 </div>
 
@@ -195,41 +241,79 @@
             <h5>Listing Details</h5>
 
             <ul class="tag mb-0 list-unstyled">
-
               <li>
                 <i class="fa fa-user" style="color: #1ec28b"></i> &nbsp; <%=
                 listing.owner.username %>
               </li>
 
               <li class="mt-3">
-                <i class="fa fa-heading" style="color: #1ec28b"></i>  &nbsp; <%=
+                <i class="fa fa-heading" style="color: #1ec28b"></i> &nbsp; <%=
                 listing.title %>
               </li>
 
               <li class="mt-3">
-                <i class="fa fa-calendar-days" style="color: #1ec28b"></i>  &nbsp; 
-                <%= listing.createdAt.toLocaleString("en-PK", dateOptions) %> at <%= listing.createdAt.toLocaleString("en-PK", timeOptions) %>
+                <i class="fa fa-calendar-days" style="color: #1ec28b"></i>
+                &nbsp; <%= listing.createdAt.toLocaleString("en-PK",
+                dateOptions) %> at <%= listing.createdAt.toLocaleString("en-PK",
+                timeOptions) %>
               </li>
 
               <li class="mt-3">
-                <i class="fa fa-map-marker-alt" style="color: #1ec28b"></i>  &nbsp; <%=
-                listing.location %>
+                <i class="fa fa-map-marker-alt" style="color: #1ec28b"></i>
+                &nbsp; <%= listing.location %>
               </li>
 
               <li class="mt-3">
-                <i class="fa fa-dollar" style="color: #1ec28b"></i>  &nbsp; Rs.<%=
-                listing.price.toLocaleString("en-PK") %> / Month
+                <i class="fa fa-dollar" style="color: #1ec28b"></i> &nbsp;
+                Rs.<%= listing.price.toLocaleString("en-PK") %> / Month
               </li>
 
               <li class="mt-3">
-                <i class="fa fa-globe" style="color: #1ec28b"></i>  &nbsp; <%=
+                <i class="fa fa-globe" style="color: #1ec28b"></i> &nbsp; <%=
                 listing.country.charAt(0).toUpperCase() +
                 listing.country.slice(1) %>
               </li>
             </ul>
 
             <div class="button mt-4">
-              <a href="#" class="single-listing-btn"> Book Now </a>
+              <button
+                id="checkout-button"
+                class="single-listing-btn"
+                style="border: none; cursor: pointer"
+              >
+                Checkout
+              </button>
+              <script>
+                const stripe = Stripe("<%= key %>");
+                const productName = "<%= listing.title %>";
+                const amount = "<%= listing.price %>";
+
+                document
+                  .getElementById("checkout-button")
+                  .addEventListener("click", async () => {
+                    const response = await fetch("/payment/create-checkout-session", {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({ productName, amount }), // Send product data
+                    });
+
+                    if (!response.ok) {
+                      alert("Failed to create checkout session.");
+                      return;
+                    }
+
+                    const sessionData = await response.json();
+                    const result = await stripe.redirectToCheckout({
+                      sessionId: sessionData.id,
+                    });
+
+                    if (result.error) {
+                      alert(result.error.message);
+                    }
+                  });
+              </script>
             </div>
           </div>
           <div class="box1 box3" data-aos="fade-up" data-aos-duration="700">
@@ -259,63 +343,6 @@
               </ul>
             </div>
           </div>
-
-          <!-- Feeds / Related Products -->
-          <!-- <div class="box1 box5" data-aos="fade-up" data-aos-duration="700">
-            <h5>Feeds</h5>
-            <div class="feed">
-              <figure class="feed-image mb-0" data-aos="fade-up">
-                <img
-                  src="/assets/images/singleblog-feed1.jpg"
-                  alt="image"
-                  class="img-fluid"
-                  loading="lazy"
-                />
-              </figure>
-              <a href="six-colum-full-wide.html" class="mb-0"
-                >Why You Need Virtual Assistant for Your Company</a
-              >
-            </div>
-            <div class="feed">
-              <figure class="feed-image mb-0" data-aos="fade-up">
-                <img
-                  src="/assets/images/singleblog-feed2.jpg"
-                  alt="image"
-                  class="img-fluid"
-                  loading="lazy"
-                />
-              </figure>
-              <a href="six-colum-full-wide.html" class="mb-0"
-                >Why You Need Virtual Assistant for Your Company</a
-              >
-            </div>
-            <div class="feed">
-              <figure class="feed-image mb-0" data-aos="fade-up">
-                <img
-                  src="/assets/images/singleblog-feed3.jpg"
-                  alt="image"
-                  class="img-fluid"
-                  loading="lazy"
-                />
-              </figure>
-              <a href="six-colum-full-wide.html" class="mb-0"
-                >Why You Need Virtual Assistant for Your Company</a
-              >
-            </div>
-            <div class="feed feed4">
-              <figure class="feed-image mb-0" data-aos="fade-up">
-                <img
-                  src="/assets/images/singleblog-feed4.jpg"
-                  alt="image"
-                  class="img-fluid"
-                  loading="lazy"
-                />
-              </figure>
-              <a href="six-colum-full-wide.html" class="mb-0"
-                >Why You Need Virtual Assistant for Your Company</a
-              >
-            </div>
-          </div> -->
         </div>
       </div>
     </div>

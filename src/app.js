@@ -11,6 +11,8 @@ import LocalStrategy from "passport-local";
 import { User } from "./models/user.model.js";
 import { DB_NAME } from "./constants.js";
 
+
+
 const app = express();
 // Setting View Engine
 app.set("view engine", "ejs");
@@ -72,11 +74,14 @@ import userRouter from "./routes/user.routes.js";
 import listingRouter from "./routes/listing.routes.js";
 import reviewRouter from "./routes/review.routes.js";
 import { notFoundHandler } from "./controllers/root.controllers.js";
+import stripeRouter from "./routes/stripe.routes.js";
 
 // Routes Declaration
 app.use("/listing", listingRouter);
 app.use("/review", reviewRouter);
 app.use("/", userRouter);
+app.use("/payment", stripeRouter);
+
 
 app.all("*", notFoundHandler);
 app.use((err, req, res, next) => {
