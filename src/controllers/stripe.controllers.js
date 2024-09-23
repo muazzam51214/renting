@@ -33,8 +33,8 @@ const createCheckoutSession = asyncHandler(async (req, res) => {
       },
     ],
     mode: "payment",
-    success_url: "http://localhost:8000/payment/success",
-    cancel_url: "http://localhost:8000/payment/failed",
+    success_url: "https://renting-production.up.railway.app/payment/success",
+    cancel_url: "https://renting-production.up.railway.app/payment/failed",
   });
 
   res.json({ id: session.id });
